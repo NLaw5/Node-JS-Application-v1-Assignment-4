@@ -372,18 +372,16 @@ module.exports.editMealPackage = (editData) => {
 }
 
 module.exports.deleteMealPackage = (inputName) => {
-    setTimeout(function(){
+    return new Promise((resolve, reject) => {
         MealPackages.deleteOne({name: inputName})
     .exec()   //run as a promise
     .then(()=>{
-        //resolve();
-    }).catch(()=>{
-       //reject();  //maybe a problem communicating with server
+        resolve();
+    }).catch((err)=>{
+       reject(err);  //maybe a problem communicating with server
     });
     },2000);
-
 }
-
 module.exports.checkMealProducts = (userData) => {
   
         console.log("Checking data being sent through");
